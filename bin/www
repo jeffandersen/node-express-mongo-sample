@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 var app = require('../index');
-var pg = require('../lib/postgres');
+var mongo = require('../lib/mongo');
 
 // Your database configuration
-var DATABASE_URL = 'postgres://username:password@localhost/api'
+var DATABASE_URL = 'mongodb://localhost:27017/api'
 
 // Connect to mysql database
-pg.initialize(DATABASE_URL, function(err) {
+mongo.initialize(DATABASE_URL, function(err) {
   if (err) {
     throw err;
   }
@@ -17,9 +17,7 @@ pg.initialize(DATABASE_URL, function(err) {
 
   // Start listening for HTTP requests
   var server = app.listen(app.get('port'), function() {
-    var host = server.address().address;
     var port = server.address().port;
-
-    console.log('Example app listening at http://%s:%s', host, port);
+    console.log('Example app listening at http://localhost:%s', port);
   });
 });

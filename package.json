@@ -1,20 +1,20 @@
 {
-  "name": "node-express-sample",
+  "name": "node-express-mongo-sample",
   "version": "1.0.0",
   "description": "Sample Express.js application for purpose of building a REST API",
   "repository": {
     "type": "git",
-    "url": "git@github.com/jeffandersen/node-express-sample.git"
+    "url": "git@github.com/jeffandersen/node-express-mongo-sample.git"
   },
   "author": "Jeff Andersen <@jeffandersen>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jeffandersen/node-express-sample/issues"
+    "url": "https://github.com/jeffandersen/node-express-mongo-sample/issues"
   },
-  "homepage": "https://github.com/jeffandersen/node-express-sample",
+  "homepage": "https://github.com/jeffandersen/node-express-mongo-sample",
   "dependencies": {
-    "body-parser": "1.10.2",
-    "express": "4.11.1",
-    "pg": "4.2.0"
+    "body-parser": "1.14.2",
+    "express": "4.13.3",
+    "mongodb": "2.1.3"
   }
 }
