@@ -1,11 +1,32 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var expressValidator = require('express-validator');
 
 var app = express();
 
 app.use(bodyParser.json({ type: 'application/json' }));
+app.use(expressValidator());
 
 var mongo = require('./lib/mongo');
+
+function validateUser(req, res, next) {
+  req.checkBody('username', 'invalid username').isAlphanumeric().notEmpty().withMessage('username required');
+  req.checkBody('profile_name', 'invalid profile name').notEmpty().withMessage('profile name required');
+  req.checkBody('email', 'invalid email').isEmail().notEmpty().withMessage('email required');
+
+  var errors = req.validationErrors();
+  if (errors) {
+    var response = { errors: [] };
+    errors.forEach(function(err) {
+      response.errors.push(err.msg);
+    });
+
+    res.statusCode = 400;
+    return res.json(response);
+  }
+
+  next();
+}
 
 function lookupUser(req, res, next) {
   var username = req.params.username;
@@ -31,7 +52,7 @@ var user = express.Router();
 
 user.get('/', function(req, res) { });
 
-user.post('/', function(req, res) {
+user.post('/', validateUser, function(req, res) {
   var userData = {
     username: req.body.username,
     profile_name: req.body.profile_name,
