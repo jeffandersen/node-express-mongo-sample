@@ -14,7 +14,7 @@
   "homepage": "https://github.com/jeffandersen/node-express-mongo-sample",
   "dependencies": {
     "body-parser": "1.14.2",
-    "express": "4.13.3",
+    "express": "4.17.1",
     "mongodb": "2.1.3"
   }
 }
